@@ -2,8 +2,6 @@
 
 A sample React and Redux application for teaching React and Redux.
 
-Part of the [Redux Fundamentals](https://stevekinney.github.io/redux-fundamentals) course for [Frontend Masters](https://frontendmasters.com).
-
 ## Building a Tip Calculator in Redux
 
 Let's start by creating some initial state for our application.
@@ -12,7 +10,7 @@ Let's start by creating some initial state for our application.
 const initialState = [
   { uuid: 1, name: 'Tofu Roast', price: 14, quantity: 1 },
   { uuid: 2, name: 'Vegan Ham', price: 12, quantity: 1 }
-]
+];
 ```
 
 We'll also start with the world's simplest reducer again.
@@ -295,7 +293,7 @@ And then we need to add some logic to the reducer.
 
 ```js
 if (action.type === REMOVE_ITEM) {
-  return state.filter(item => item.uuid !== action.payload.uuid);
+  return state.filter((item) => item.uuid !== action.payload.uuid);
 }
 ```
 
@@ -335,7 +333,7 @@ const dispatch = useDispatch();
   onClick={() => dispatch(removeItem(uuid))}
 >
   Remove
-</Button>
+</Button>;
 ```
 
 Again, not bad, but it's really tying our state management to our view layer again. (Granted, this is a general complain about hooks.)
@@ -488,7 +486,7 @@ What if we could figure out if things have changed that matter for this componen
 
 ```js
 const getMenuItem = (state, props) => {
-  return state.find((item) => item.uuid === props.uuid)
+  return state.find((item) => item.uuid === props.uuid);
 };
 
 const menuItem = createSelector([getMenuItem], (item) => {
@@ -766,20 +764,20 @@ export const TipSelect = connect(
   mapStateToProps,
   mapDispatchToProps
 )(({ amount, updateTip }) => {
-return (
-  <Box marginY="space80">
-    <Label htmlFor="tip-amount">How much would you like to tip?</Label>
-    <Select
-      id="tip-amount"
-      value={amount}
-      onChange={(event) => updateTip(event.target.value)}
-    >
-      <Option value="15">15%</Option>
-      <Option value="20">20%</Option>
-      <Option value="25">25%</Option>
-    </Select>
-  </Box>
-);
+  return (
+    <Box marginY="space80">
+      <Label htmlFor="tip-amount">How much would you like to tip?</Label>
+      <Select
+        id="tip-amount"
+        value={amount}
+        onChange={(event) => updateTip(event.target.value)}
+      >
+        <Option value="15">15%</Option>
+        <Option value="20">20%</Option>
+        <Option value="25">25%</Option>
+      </Select>
+    </Box>
+  );
 });
 ```
 
